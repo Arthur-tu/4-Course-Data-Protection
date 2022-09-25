@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="540.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Controller">
+
+    <AnchorPane prefHeight="360.0" prefWidth="540.0">
+        <children>
+            <Label fx:id="labelMsg" layoutX="153.0" layoutY="72.0" prefHeight="43.0" prefWidth="234.0" text="Авторизация" textAlignment="RIGHT" textFill="#8a8a8a">
+                <font>
+                    <Font name="Verdana" size="34.0" />
+                </font>
+            </Label>
+         <MenuBar fx:id="menuBarItem" layoutY="-1.0" prefHeight="25.0" prefWidth="540.0">
+           <menus>
+             <Menu fx:id="menuFileItem" mnemonicParsing="false" text="Файл">
+               <items>
+                 <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Завершить работу " />
+               </items>
+             </Menu>
+             <Menu fx:id="menuRefItem" mnemonicParsing="false" text="Справка">
+               <items>
+                 <MenuItem fx:id="menuAboutItem" mnemonicParsing="false" text="О программе" />
+               </items>
+             </Menu>
+           </menus>
+         </MenuBar>
+         <Label fx:id="labelMsg1" layoutX="61.0" layoutY="72.0" prefHeight="43.0" prefWidth="418.0" text="Введите логин еще раз" textFill="RED" visible="false">
+            <font>
+               <Font name="Verdana" size="34.0" />
+            </font>
+         </Label>
+         <Label fx:id="labelMsg11" layoutX="48.0" layoutY="72.0" prefHeight="43.0" prefWidth="445.0" text="Введите пароль еще раз" textFill="RED" visible="false">
+            <font>
+               <Font name="Verdana" size="34.0" />
+            </font>
+         </Label>
+        </children></AnchorPane>
+    <TextField fx:id="loginField" layoutX="95.0" layoutY="125.0" prefHeight="25.0" prefWidth="350.0" promptText="Логин" style="-fx-background-color: #fafafa; -fx-border-radius: 5; -fx-border-color: silver;">
+        <font>
+            <Font size="17.0" />
+        </font>
+    </TextField>
+    <PasswordField fx:id="passwordField" layoutX="95.0" layoutY="189.0" prefHeight="25.0" prefWidth="350.0" promptText="Пароль" style="-fx-background-color: fafafa; -fx-border-radius: 5; -fx-border-color: silver;">
+        <font>
+            <Font size="17.0" />
+        </font>
+    </PasswordField>
+    <Button fx:id="enterButton" layoutX="95.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #9966CC;" text="Войти" textFill="WHITE">
+        <font>
+            <Font size="17.0" />
+        </font>
+    </Button>
+    <Button fx:id="cancelButton" layoutX="344.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #9966CC;" text="Отмена" textFill="WHITE">
+        <font>
+            <Font size="17.0" />
+        </font>
+    </Button>
+
+</AnchorPane>

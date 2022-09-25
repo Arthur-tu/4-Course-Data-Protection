@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="540.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ListViewFormController">
+
+    <AnchorPane layoutX="-6.0" prefHeight="360.0" prefWidth="550.0">
+        <children>
+            <Label layoutX="34.0" layoutY="58.0" prefHeight="43.0" prefWidth="174.0" text="Имя пользователя:" textFill="#8a8a8a" wrapText="true">
+                <font>
+                    <Font name="Verdana" size="17.0" />
+                </font>
+            </Label>
+            <Button fx:id="saveButton" layoutX="412.0" layoutY="235.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" style="-fx-background-color: #9966CC;" text="Сохранить" textFill="WHITE">
+                <font>
+                    <Font size="17.0" />
+                </font>
+            </Button>
+            <Button fx:id="listUsersButton" layoutX="182.0" layoutY="227.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" style="-fx-background-color: #9966CC;" text="Следующий" textFill="WHITE">
+                <font>
+                    <Font size="17.0" />
+                </font>
+            </Button>
+            <Button fx:id="cancelProgramButton" layoutX="412.0" layoutY="291.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" style="-fx-background-color: #9966CC;" text="Отмена" textFill="WHITE">
+                <font>
+                    <Font size="17.0" />
+                </font>
+            </Button>
+            <Button fx:id="enterButton" layoutX="34.0" layoutY="291.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" style="-fx-background-color: #9966CC;" text="Ok" textFill="WHITE">
+                <font>
+                    <Font size="17.0" />
+                </font>
+            </Button>
+         <Label fx:id="userNameLabel" layoutX="218.0" layoutY="58.0" prefHeight="43.0" prefWidth="174.0" textFill="#8a8a8a" wrapText="true">
+            <font>
+               <Font name="Verdana" size="17.0" />
+            </font>
+         </Label>
+         <CheckBox fx:id="isblocked" layoutX="339.0" layoutY="135.0" mnemonicParsing="false" text="Блокировка" />
+         <CheckBox fx:id="islimited" layoutX="339.0" layoutY="172.0" mnemonicParsing="false" selected="true" text="Ограничение на пароль" />
+         <Button fx:id="listUsersPrevButton" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="129.0" style="-fx-background-color: #9966CC;" text="Предыдущий" textFill="WHITE">
+            <font>
+               <Font size="17.0" />
+            </font>
+         </Button>
+        </children></AnchorPane>
+
+</AnchorPane>

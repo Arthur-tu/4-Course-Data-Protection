@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="540.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.NewUserForm">
+
+    <AnchorPane prefHeight="360.0" prefWidth="540.0">
+      <children>
+          <Button fx:id="registrButton" layoutX="95.0" layoutY="254.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #9966CC;" text="Ok" textFill="WHITE">
+              <font>
+                  <Font size="17.0" />
+              </font>
+          </Button>
+          <Button fx:id="cancelButton" layoutX="344.0" layoutY="254.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #9966CC;" text="Отмена" textFill="WHITE">
+              <font>
+                  <Font size="17.0" />
+              </font>
+          </Button>
+          <TextField fx:id="loginField" layoutX="95.0" layoutY="140.0" prefHeight="25.0" prefWidth="350.0" promptText="Введите логин:" style="-fx-background-color: #fafafa; -fx-border-radius: 5; -fx-border-color: silver;">
+              <font>
+                  <Font size="17.0" />
+              </font>
+          </TextField>
+          <Label fx:id="loginIsPresentLabel" layoutX="33.0" layoutY="24.0" prefHeight="80.0" prefWidth="474.0" text="Пользователь с таким логином уже существует" textFill="RED" wrapText="true">
+              <font>
+                  <Font name="Verdana" size="25.0" />
+              </font>
+          </Label>
+      </children></AnchorPane>
+
+</AnchorPane>

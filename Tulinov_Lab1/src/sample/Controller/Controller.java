@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import logic.OneLetterAffineSubstitution;
 import sample.DBHandler;
 import sample.User;
 
@@ -91,14 +92,12 @@ public class Controller {
     private void loginUser(String loginText, String password) {
         DBHandler dbHandler = new DBHandler();
         User user = dbHandler.getUser(loginText);
-        System.out.println("password: " + password);
-        System.out.println("user.getpassword(): " + user.getPassword());
-        if (password.equals(user.getPassword())) {
+        String hash = OneLetterAffineSubstitution.encryptMessage(loginText.toCharArray(), password);
+        if (hash.equals(user.getPassword())) {
             labelMsg.setVisible(true);
             labelMsg11.setVisible(false);
             System.out.println("Успех");
             currentUser = user;
-            //User user3 = dbHandler.getIsfirstloginFromDB(currentUser);
             if (currentUser.getIsblocked() == 1)  {
                 openNewModalScene("/sample/fxml/block.fxml", "Блокировка");
             } else {
@@ -156,11 +155,9 @@ public class Controller {
             e.printStackTrace();
         }
 
-        if (counter >= 1) {
-            System.out.println("Логин найден");
-           return true;
-        }
-        System.out.println("Логин не найден");
+        if (counter >= 1)
+            return true;
+
         return false;
     }
 

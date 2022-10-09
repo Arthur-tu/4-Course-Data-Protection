@@ -84,14 +84,11 @@ public class ListViewFormController {
             userNameLabel.setText(list.get(counter).getLogin());
         });
 
-        saveButton.setOnAction(event -> {
-            saveUser(dbHandler, list);
-        });
+        saveButton.setOnAction(event -> saveUser(dbHandler, list));
 
     }
 
         private void saveUser(DBHandler dbHandler, ArrayList<User> list) {
-            short block, limit;
             list.get(counter).setIsblocked(isblocked.isSelected() ? (short) 1 : (short) 0);
 
             list.get(counter).setIsLimited(islimited.isSelected() ? (short) 1 : (short) 0);
@@ -115,4 +112,4 @@ public class ListViewFormController {
             }
             isblocked.setSelected(flag);
         }
-    }
+}

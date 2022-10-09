@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import logic.OneLetterAffineSubstitution;
 import logic.PasswordCreator;
 import sample.DBHandler;
 import sample.User;
@@ -79,16 +80,20 @@ public class ChangePassForm {
             String passwordProof = passwordProofField.getText().trim();
             String oldpassword = oldPassField.getText().trim();
 
+            String oldPassHash = OneLetterAffineSubstitution.encryptMessage(Controller.
+                    getCurrentUser().getLogin().toCharArray(), oldpassword);
+
+            String newPassHash = OneLetterAffineSubstitution.encryptMessage(Controller.
+                    getCurrentUser().getLogin().toCharArray(), password);
+
             oldPassMsg.setVisible(false);
             label.setVisible(false);
             passIsNotGood.setVisible(false);
-            if (oldPassIsCorrect(oldpassword, dbHandler)) {
+            if (oldPassIsCorrect(oldPassHash, dbHandler)) {
                 System.out.println("Старый пароль введен правильно");
-                //oldPassMsg.setVisible(false);
                 if (passAreSame(password, passwordProof)) {
-                    Controller.getCurrentUser().setPassword(password);
+                    Controller.getCurrentUser().setPassword(newPassHash);
                     dbHandler.changePassword(Controller.getCurrentUser());
-                   // label.setVisible(false);
                     System.out.println("Пароль изменен");
                     Stage stage = (Stage) enterButton.getScene().getWindow();
                     stage.close();
@@ -108,7 +113,6 @@ public class ChangePassForm {
             System.out.println("Пароль не подходит под ограничения");
             passIsNotGood.setVisible(true);
         }
-
     }
 
     private boolean checkPassword(String password) {

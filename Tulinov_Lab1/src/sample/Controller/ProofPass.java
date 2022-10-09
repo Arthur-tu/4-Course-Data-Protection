@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
-import sample.Controller.Controller;
+import logic.OneLetterAffineSubstitution;
 import sample.DBHandler;
 import sample.User;
 
@@ -39,7 +39,9 @@ public class ProofPass {
             User user = Controller.getCurrentUser();
             String oldPass = user.getPassword();
 
-            if (pass.equals(oldPass)) {
+            String hashPass = OneLetterAffineSubstitution.encryptMessage(user.getLogin().toCharArray(), pass);
+
+            if (hashPass.equals(oldPass)) {
                 DBHandler dbHandler = new DBHandler();
                 System.out.println("Пароль подтвержден");
                 Controller.getCurrentUser().setIsfirstlogin((short) 0);
@@ -80,4 +82,5 @@ public class ProofPass {
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
+
 }

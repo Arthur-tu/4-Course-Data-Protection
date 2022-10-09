@@ -21,7 +21,7 @@ public class AppController {
         cancelButton.setOnAction(event -> closeProgram());
 
         changePass.setOnAction(event ->
-            openNewModalScene("/sample/fxml/changePassForm.fxml", "Смена пароля")
+                openNewModalScene("/sample/fxml/changePassForm.fxml", "Смена пароля")
         );
     }
 

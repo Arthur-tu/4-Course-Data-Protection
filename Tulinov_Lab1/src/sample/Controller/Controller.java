@@ -9,12 +9,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import logic.FileChiphrator;
 import logic.OneLetterAffineSubstitution;
 import sample.DBHandler;
 import sample.User;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -85,7 +91,35 @@ public class Controller {
     }
 
     private void closeProgram() {
+        IvParameterSpec ivParameterSpec = null;
         System.out.println("Завершение работы программы");
+        FileChiphrator fileChiphrator = new FileChiphrator("123");
+        File inputFile = new File(
+                "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Data\\tulinovdp\\decriptedFile.ibd");
+        File encriptedFile = new File
+                ("C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Data\\tulinovdp\\encriptedFile.ibd");
+        try {
+             ivParameterSpec = fileChiphrator.generateIv();
+        }catch (Exception e ) {
+            e.printStackTrace();
+        }
+
+        String digest = fileChiphrator.createHashString("123");
+        SecretKey keyOnPassPhrase = fileChiphrator.getKeyFromPassword2(digest);
+        try {
+            fileChiphrator.encriptFile(FileChiphrator.algo, keyOnPassPhrase, ivParameterSpec, inputFile, encriptedFile);
+        } catch (Exception e) {
+            System.out.println("Ошибка шифрования");
+            e.printStackTrace();
+        }
+        System.out.println("Файл зашифрован");
+        try {
+            Files.delete(Paths.get("C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Data\\tulinovdp\\decriptedFile.ibd"));
+        } catch (Exception e ) {
+            System.out.println("Ошибка удаления файла");
+            e.printStackTrace();
+        }
+        System.out.println("Расшифрованный файл удален");
         System.exit(1);
     }
 
@@ -104,7 +138,7 @@ public class Controller {
                 if ((currentUser.getIsfirstlogin() == 1)) {
                     openNewModalScene("/sample/fxml/proofPass.fxml", "Подтверждение пароля");
                     dbHandler.updateUserLog(currentUser);
-                } else if (isAdmin(currentUser)) {
+                } else if (currentUser.isAdmin()) {
                     openNewScene(enterButton, "/sample/fxml/appAdmin.fxml");
                 } else {
                     openNewScene(enterButton, "/sample/fxml/app.fxml");
@@ -154,25 +188,18 @@ public class Controller {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        if (counter >= 1)
-            return true;
-
-        return false;
+        return counter >= 1;
     }
 
     public void openNewScene(Button button, String window) {
         button.getScene().getWindow().hide();
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
-
         try {
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -182,13 +209,11 @@ public class Controller {
     public void openNewModalScene(String window, String title) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
-
         try {
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -196,9 +221,5 @@ public class Controller {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-    }
-
-    private boolean isAdmin(User user) {
-        return user.getLogin().equals("admin");
     }
 }

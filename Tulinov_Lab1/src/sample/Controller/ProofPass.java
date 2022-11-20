@@ -33,14 +33,11 @@ public class ProofPass {
             stage.close();
             System.exit(1);
         });
-
         enterButton.setOnAction(event -> {
             String pass = passwordProofField.getText();
             User user = Controller.getCurrentUser();
             String oldPass = user.getPassword();
-
             String hashPass = OneLetterAffineSubstitution.encryptMessage(user.getLogin().toCharArray(), pass);
-
             if (hashPass.equals(oldPass)) {
                 DBHandler dbHandler = new DBHandler();
                 System.out.println("Пароль подтвержден");
@@ -58,7 +55,6 @@ public class ProofPass {
                 label.setVisible(true);
             }
         });
-
     }
 
     private boolean isAdmin(User user) {
@@ -67,20 +63,16 @@ public class ProofPass {
 
     public void openNewScene(Button button, String window) {
         button.getScene().getWindow().hide();
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
-
         try {
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
-
 }

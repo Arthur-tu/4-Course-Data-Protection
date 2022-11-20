@@ -62,4 +62,8 @@ public class User {
     public void setIsLimited(short passlimit) {
         this.passlimit = passlimit;
     }
+
+    public boolean isAdmin() {
+        return login.equals("admin");
+    }
 }
